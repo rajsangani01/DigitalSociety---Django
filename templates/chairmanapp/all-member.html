@@ -1,0 +1,88 @@
+﻿{% extends 'chairmanapp/index.html' %}
+{% load static %}
+{% block content %}
+<section class="content home">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <h2>All Society Member <small class="text-muted">Welcome to Digital Society</small></h2>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+
+                <button class="btn btn-white btn-icon btn-round d-none d-md-inline-block float-right m-l-10"
+                    type="button">
+                    <i class="zmdi zmdi-plus"></i>
+                </button>
+
+
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i>
+                            Digital Society</a></li>
+                    <li class="breadcrumb-item">Society Member</li>
+                    <li class="breadcrumb-item active">All Society Member</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% for m in all_member %}
+    <div class="container-fluid">
+
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                
+                <div class="tab-content m-t-10">
+                    <div class="tab-pane active" id="Permanent">
+                        <div class="row clearfix">
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="card xl-blue member-card doctor">
+                                    <div class="body">
+                                        <div class="member-thumb">
+                                            {% if m.gender == 'M' %}
+                                            <img src="/media/male-icon.png" class="img-fluid"
+                                                alt="profile-image">
+                                                {% else %}
+                                                <img src="/media/female-icon.png" class="img-fluid"
+                                                alt="profile-image">
+                                                {% endif %}
+                                        </div>
+                                        <div class="detail">
+                                            <h4 class="m-b-0">{{m.firstname}} {{m.lastname}}</h4>
+                                            <p class="text-muted">{{m.user_id.role}}</p>
+                                           
+                                            <p class="text-muted">Block No : {{m.block_no}}</p>
+                                            <a href="{% url 'societymember-profile' %}" class="btn btn-default btn-round btn-simple">View
+                                                Profile</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+</section>
+<!-- Scripts -->
+<script src="..\assets\bundles\libscripts.bundle.js"></script>
+<script src="..\assets\bundles\vendorscripts.bundle.js"></script>
+
+<script src="..\assets\bundles\mainscripts.bundle.js"></script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
+{% endblock content %}
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+{% extends 'societymemberapp/index.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'societymemberapp\assets\css\blog.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<section class="content home">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <h2>Notice List <small class="text-muted">Welcome to Digital Society</small></h2>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+
+
+
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i>
+                            Digital Society</a></li>
+                    <li class="breadcrumb-item">Notice</li>
+                    <li class="breadcrumb-item active">Notice List</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% for n in nall %}
+    <div class="container-fluid">
+        <div class="blog-page">
+            <div class="row">
+                <div class="col-lg-8 col-md-12 left-box">
+                    <div class="card single_post">
+                        <div class="body">
+                            <h3 class="m-t-0 m-b-5"><a href="{}">{{n.title}}</a></h3>
+                            <ul class="meta">
+                                <li><a href="#"><i class="zmdi zmdi-account col-blue"></i>Posted By: {{n.user_id.role}}</a></li>
+                                <li><a href="#"><i class="zmdi zmdi-label col-red"></i>{{n.whenpublished}}</a></li>
+    
+                               
+                            </ul>
+                            <b style="color:red;"><p>{{n.discription}}</p></b>
+                        </div>
+                       
+                    </div>
+                    
+                  
+                    
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+<!-- Scripts -->
+<script src="..\assets\bundles\libscripts.bundle.js"></script>
+<script src="..\assets\bundles\vendorscripts.bundle.js"></script>
+
+<script src="..\assets\bundles\mainscripts.bundle.js"></script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
+
+{% endblock content %}

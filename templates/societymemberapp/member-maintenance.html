@@ -1,0 +1,90 @@
+{% extends 'societymemberapp/index.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="content home">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <h2>maintenance <small class="text-muted">Welcome to Oreo</small></h2>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+
+
+
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i>
+                            Oreo</a></li>
+                    <li class="breadcrumb-item">maintenance</li>
+                    <li class="breadcrumb-item active">maintenance</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="header">
+                        <h2><strong>List</strong> </h2>
+                        <ul class="header-dropdown">
+                            <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle"
+                                    data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i
+                                        class="zmdi zmdi-more"></i> </a>
+                                <ul class="dropdown-menu dropdown-menu-right slideUp float-right">
+                                    <li><a href="javascript:void(0);">Action</a></li>
+                                    <li><a href="javascript:void(0);">Another action</a></li>
+                                    <li><a href="javascript:void(0);">Something else</a></li>
+                                </ul>
+                            </li>
+                            <li class="remove">
+                                <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>SOCIETY MEMBER NAME</th>
+                                        <th>CONTACT NO.</th>
+                                        <th>TITLE</th>
+                                        <th>AMOUNT</th>
+                                        <th>DUEDATE</th>
+                                        <th>STATUS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for s in mall %}
+                                    <tr>
+                                        <td>{{s.id}}</td>
+                                        <td>{{s.member_id.firstname}}</td>
+                                        <td>{{s.member_id.contact_no}}</td>
+                                        <td>{{s.title}}</td>
+                                        <td>{{s.amount}}</td>
+                                        <td>{{s.duedate}}</td>
+                                        {% if s.status == 'PENDING' %}
+                                        <td style="background-color: aqua; color:black;"><a href="{% url 'maintenance-payment' s.id %}"> Pay Now</a></td>
+                                        {% else %}
+                                        <td style="background-color: greenyellow; color:black;">{{s.status}}</td>
+                                        {% endif %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <h3>Total amount : {{total}}</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock content %}

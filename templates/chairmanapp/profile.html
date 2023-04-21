@@ -1,0 +1,114 @@
+﻿{% extends 'chairmanapp/index.html' %} {% load static %} {% block content %}
+
+<section class="content home">
+
+  <div class="block-header">
+    <div class="row">
+      <div class="col-lg-5 col-md-5 col-sm-12">
+        <h2>
+          User Profile
+          <small class="text-muted">Welcome to Digital Society</small>
+        </h2>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+        <button class="btn btn-white btn-icon btn-round d-none d-md-inline-block float-right m-l-10" type="button">
+          <i class="zmdi zmdi-edit"></i>
+        </button>
+
+        <ul class="breadcrumb float-md-right">
+          <li class="breadcrumb-item">
+            <a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i> Digital Society</a>
+          </li>
+          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item active">User Profile</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="profile-page">
+      <div class="row clearfix">
+        <div class="col-lg-4 col-md-12">
+          <div class="card profile-header">
+            <div class="body text-center">
+              <div class="profile-image">
+                <img src="{{cid.pic.url}}" alt="" />
+              </div>
+              <div>
+                <h4 class="m-b-0">
+                  <strong>{{cid.firstname|capfirst}} </strong>
+                  {{cid.lastname|capfirst}}
+                </h4>
+                <span class="job_post">{{uid.role}}</span>
+                <p>Krishna Bunglows</p>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+        <div class="col-lg-8 col-md-12">
+          <div class="card">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#Account">Account</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane body active" id="about">
+                <p>About Chairman</p>
+              </div>
+              <div class="tab-pane body" id="Account">
+
+                <form action="{% url 'chairman-password-change' %}" method="post">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <input type="text" value="{{uid.email}}" class="form-control" placeholder="email" disabled />
+                  </div>
+                  <div class="form-group">
+                    <input type="password" name="currentpassword" class="form-control" placeholder="Current Password" />
+                  </div>
+                  <div class="form-group">
+                    <input type="password" name="newpassword" class="form-control" placeholder="New Password" />
+                  </div>
+
+                  <input type="submit" value="Change Password" class="btn btn-info btn-round" />
+                </form>
+
+
+                <hr />
+
+                <div class="row clearfix">
+                  <div class="col-lg-6 col-md-12">
+                    <form method="post" action="{% url 'chairman-profile' %}">
+                      {% csrf_token %}
+                      <div class="form-group">
+                        <input type="text" name="firstname" value="{{cid.firstname}}" class="form-control"
+                          placeholder="First Name" />
+                      </div>
+                  </div>
+                  <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                      <input type="text" name="lastname" value="{{cid.lastname}}" class="form-control"
+                        placeholder="Last Name" />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <input type="submit" value="Save Names" class="btn btn-primary btn-round">
+                  </div>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
